@@ -49,3 +49,46 @@ function square() {
   return { makeChoice, getValue }
 
 };
+
+function gameController(player1, player2) {
+
+  let playerOne = player1;
+  let playerTwo = player2;
+
+  const board = gameBoard();
+
+  const players = [
+    { name: playerOne, token: 'X' },
+    { name: playerTwo, token: 'O' }
+  ];
+
+  let activePlayers = players[0];
+
+  function switchPlayer() {
+    activePlayers = activePlayers === players[0] ? players[1] : players[0];
+  };
+
+  function getActivePlayers() {
+    return activePlayers;
+  };
+
+  function newRound() {
+    board.printBoard();
+    console.log(`${getActivePlayers().name}'s turn!`);
+  };
+
+  function playRound(row, column) {
+
+    console.log(`${getActivePlayers().name} picked row ${row}, column ${column}!`);
+
+    board.selection(row, column, getActivePlayers().token);
+
+    switchPlayer();
+    newRound();
+
+  };
+
+  newRound();
+  return { playRound, getActivePlayers }
+
+};
