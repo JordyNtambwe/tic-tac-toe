@@ -33,3 +33,19 @@ function gameBoard() {
   return { getBoard, selection, printBoard };
 
 };
+
+function square() {
+
+  let value = 0;
+
+  function makeChoice(player) {
+    value = player;
+  };
+
+  function getValue() {
+    return value;
+  };
+
+  return { makeChoice, getValue }
+
+};
